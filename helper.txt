@@ -1,0 +1,4 @@
+// https://vscode-snippets-generator.netlify.app/
+// "${1:array}.forEach(${2:item} => {",
+// "function ${1:functionName}(${2:parameters}) {",
+// "const ${1:functionName} = (${2:parameters}) => {",
