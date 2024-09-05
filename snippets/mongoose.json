@@ -16,8 +16,8 @@
     ],
     "description": "Insert all the typical required modules"
   }, 
-  "mongoose session def": {
-    "prefix": "a-mongoose-session-defs",
+  "mongoose con session def": {
+    "prefix": "a-mongoose-con-session-defs",
     "body": [
       "/*",
       "mongoose.connect('mongodb+srv://TT:TT@goldtrade.skpkklp.mongodb.net/', { useNewUrlParser: true });    ",
@@ -47,6 +47,43 @@
       "passport.serializeUser(User.serializeUser());",
       "passport.deserializeUser(User.deserializeUser());"
     ],
-    "description": "mongoose session def"
-  }
+    "description": "mongoose connection session def"
+  },
+  "connect with mongoose ": {
+    "prefix": "a-mongoose-connect",
+    "body": [
+        "",
+        "//have own file and call connectDB()",
+        "import mongoose from \"mongoose\";",
+        "",
+        "export default function connectDB() {",
+        "//   const url = \"mongodb://127.0.0.1/blog_db\";",
+        "  const url = \"mongodb+srv://TT:TT@goldtrade.skpkklp.mongodb.net/\";",
+        "",
+        "  try {",
+        "    mongoose.connect(url, {",
+        "      useNewUrlParser: true,",
+        "      useCreateIndex: true,",
+        "      useUnifiedTopology: true,",
+        "    });",
+        "  } catch (err) {",
+        "    console.error(err.message);",
+        "    process.exit(1);",
+        "  }",
+        "",
+        "  const dbConnection = mongoose.connection;",
+        "",
+        "  //connect() has 2 further args",
+        "  dbConnection.once(\"open\", (_) => {",
+        "    console.log(`Database connected: ${url}`);",
+        "  });",
+        "  //connect() has 2 further args",
+        "  dbConnection.on(\"error\", (err) => {",
+        "    console.error(`connection error: ${err}`);",
+        "  });",
+        "  return;",
+        "}"
+    ],
+    "description": "connect with mongoose. own file."
+}
 }

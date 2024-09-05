@@ -8,5 +8,6 @@ Use "a-" to display snippets.
 - a-routes (GET, POST, ...)
 - a-mongoose (When dealing with mongoose)
 - a-html (HTML stuff)
+- a-passport
 
 

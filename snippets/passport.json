@@ -1,0 +1,63 @@
+{
+  "passport google": {
+    "prefix": "a-passport-google",
+    "body": [
+      "const passport = require('passport');",
+      "const GoogleStrategy = require('passport-google-oauth20').Strategy;",
+      "",
+      "passport.use(",
+      "\tnew GoogleStrategy(",
+      "\t\t{",
+      "\t\t\tclientID: '',",
+      "\t\t\tclientSecret: '',",
+      "\t\t\tcallbackURL: '',",
+      "\t\t},",
+      "\t\t(accessToken, refreshToken, profile, done) => {",
+      "\t\t\t// Code to handle user authentication and retrieval",
+      "\t\t}",
+      "\t)",
+      ");",
+      "",
+      "passport.serializeUser((user, done) => {",
+      "\t// Code to serialize user data",
+      "});",
+      "",
+      "passport.deserializeUser((id, done) => {",
+      "\t// Code to deserialize user data",
+      "});"
+    ],
+    "description": "passport google auth"
+  },
+  "passport google routes": {
+    "prefix": "a-passport-google-routes",
+    "body": [
+      "const express = require(\"express\");",
+      "const passport = require(\"passport\");",
+      "const router = express.Router();",
+      "",
+      "// Initiates the Google OAuth 2.0 authentication flow",
+      "router.get(",
+      "\t\"/auth/google\",",
+      "\tpassport.authenticate(\"google\", { scope: [\"profile\", \"email\"] })",
+      ");",
+      "",
+      "// Callback URL for handling the OAuth 2.0 response",
+      "router.get(\"/auth/google/callback\",",
+      "\tpassport.authenticate(\"google\", { failureRedirect: \"/login\" }),",
+      "\t(req, res) => {",
+      "\t\t// Successful authentication, redirect or handle the user as desired",
+      "\t\tres.redirect(\"/\");",
+      "\t}",
+      ");",
+      "",
+      "// Logout route",
+      "router.get(\"/logout\", (req, res) => {",
+      "\treq.logout();",
+      "\tres.redirect(\"/\");",
+      "});",
+      "",
+      "module.exports = router;"
+    ],
+    "description": "passport google auth routes"
+  }
+}
