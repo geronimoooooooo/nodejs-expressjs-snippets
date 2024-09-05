@@ -24,5 +24,24 @@
       "module.exports = UserModel;"
     ],
     "description": "User model"
-  }
+  },
+  "schemaMongoose": {
+        "prefix": "a-models-schema",
+        "body": [
+            "import mongoose from 'mongoose';",
+            "",
+            "const ${1:${TM_FILENAME_BASE/(.*)$/${1:/capitalize}/}}Schema = mongoose.Schema(",
+            "  {",
+            "    content: {},",
+            "  },",
+            "  {",
+            "    timestamps: true,",
+            "  }",
+            ");",
+            "",
+            "export default mongoose.model('${1:${TM_FILENAME_BASE/(.*)$/${1:/capitalize}/}}', ${1:${TM_FILENAME_BASE/(.*)$/${1:/capitalize}/}}Schema);",
+            ""
+        ],
+        "description": "Create schema mongoose"
+    }
 }

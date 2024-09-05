@@ -4,7 +4,6 @@
     "body": [
       "//import express from 'express'",
       "const express = require('express')",
-      
       "const app = express()",
       "",
       "// const hostname = '127.0.0.1';",
@@ -21,7 +20,6 @@
     ],
     "description": "Create a simple express server."
   },
-    
   "insert some defs": {
     "prefix": "a-server-defs",
     "body": [
@@ -30,6 +28,19 @@
       "app.use(bodyParser.urlencoded({ extended: true }));"
     ],
     "description": "insert some defs"
+  },
+  "export default": {
+    "prefix": "a-server-export",
+    "body": [
+      "export default ${1:router}"
+    ],
+    "description": "export default"
+  },
+  "module exports": {
+    "prefix": "a-server-module-export",
+    "body": [
+      "module.exports = UserModel;"
+    ],
+    "description": "module.exports CJS"
   }
 }
-
