@@ -2,8 +2,9 @@
   "simple express server": {
     "prefix": "a-server-express",
     "body": [
-      "// const express = require( 'express' )",
-      "import express from 'express'",
+      "//import express from 'express'",
+      "const express = require('express')",
+      
       "const app = express()",
       "",
       "// const hostname = '127.0.0.1';",
