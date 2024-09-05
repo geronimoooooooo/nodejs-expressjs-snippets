@@ -2,7 +2,7 @@
   "name": "NodeJs-ExpressJS-Snippets",
   "displayName": "NodeJs-ExpressJS-Snippets",
   "description": "Helps you code some nodejs and expressjs.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "Simo Lukic",
   "engines": {
     "vscode": "^1.92.0"
