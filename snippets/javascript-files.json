@@ -20,5 +20,16 @@
       ""
     ],
     "description": "Create a simple express server."
+  },
+    
+  "insert some defs": {
+    "prefix": "a-server-defs",
+    "body": [
+      "app.use(express.urlencoded({ extended: false }));",
+      "app.set('view engine','ejs');",
+      "app.use(bodyParser.urlencoded({ extended: true }));"
+    ],
+    "description": "insert some defs"
   }
 }
+

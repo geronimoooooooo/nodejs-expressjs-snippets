@@ -1,0 +1,28 @@
+{
+  "User model": {
+    "prefix": "a-models-user",
+    "body": [
+      "const mongoose = require('mongoose');",
+      "const passportLocalMongoose = require('passport-local-mongoose');",
+      "",
+      "const UserSchema = new mongoose.Schema({",
+      "  username: {",
+      "    type: String,",
+      "    required: true,",
+      "    unique: true",
+      "  },",
+      "  email: {",
+      "    type: String,",
+      "    required: true,",
+      "    unique: true",
+      "  }",
+      "});",
+      "",
+      "UserSchema.plugin(passportLocalMongoose);",
+      "",
+      "const UserModel = mongoose.model('user', UserSchema);",
+      "module.exports = UserModel;"
+    ],
+    "description": "User model"
+  }
+}

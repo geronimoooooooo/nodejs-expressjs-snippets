@@ -1,0 +1,52 @@
+{
+  "insert all mongoose reqs": {
+    "prefix": "a-mongoose-req",
+    "body": [
+      "const express = require('express');",
+      "const mongoose = require('mongoose');",
+      "const passport = require('passport');",
+      "const LocalStrategy = require('passport-local').Strategy;",
+      "const passportLocalMongoose = require('passport-local-mongoose');",
+      "const session = require('express-session');",
+      "const MongoStore = require('connect-mongo');",
+      "const bodyParser = require('body-parser'),",
+
+      "const User = require('./models/User');",
+      "const app = express()"
+    ],
+    "description": "Insert all the typical required modules"
+  }, 
+  "mongoose session def": {
+    "prefix": "a-mongoose-session-defs",
+    "body": [
+      "/*",
+      "mongoose.connect('mongodb+srv://TT:TT@goldtrade.skpkklp.mongodb.net/', { useNewUrlParser: true });    ",
+      "app.use(require('express-session')({",
+      "    secret:'Miss white is my cat',",
+      "    resave: false,",
+      "    saveUninitialized: false",
+      "}));",
+      "*/",
+      "const MongoStore = require('connect-mongo');",
+      "const mongoose = require('mongoose');",
+      "const mongoString = 'mongodb+srv://TT:TT@goldtrade.skpkklp.mongodb.net/';",
+      "mongoose.connect(mongoString);",
+      "const db = mongoose.connection;",
+      "",
+      "app.use(session({",
+      "  secret: 'your secret key',",
+      "  resave: false,",
+      "  saveUninitialized: true,",
+      "  store: new MongoStore({ mongoUrl: db.client.s.url })",
+      "}));",
+      "",
+      "app.use(passport.initialize());",
+      "app.use(passport.session());",
+      "",
+      "passport.use(new LocalStrategy(User.authenticate()));",
+      "passport.serializeUser(User.serializeUser());",
+      "passport.deserializeUser(User.deserializeUser());"
+    ],
+    "description": "mongoose session def"
+  }
+}
