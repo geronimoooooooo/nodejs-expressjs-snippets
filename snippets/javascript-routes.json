@@ -1,0 +1,11 @@
+{
+  "create get endpoint": {
+    "prefix": "a-routes-get",
+    "body": [
+      "${1:app}.get('${2:path}', (req, res)=>{",
+      "\t$3",
+      "});"
+    ],
+    "description": "Creates a get endpoint."
+  }
+}
