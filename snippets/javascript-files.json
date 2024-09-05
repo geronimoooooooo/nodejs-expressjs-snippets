@@ -1,13 +1,13 @@
 {
-    "simple server": {
-      "prefix": "a-server",
+    "simple express server": {
+      "prefix": "a-server-express",
       "body": [
         "// const express = require( 'express' )",
         "import express from 'express'",
         "const app = express()",
         "",
         "// const hostname = '127.0.0.1';",
-        "const port = process.env.PORT || 3000",
+        "const port = process.env.PORT || 1337",
         "",
         "app.get('/', (req, res) => {        ",
         "    res.send('Express World!')",
@@ -18,6 +18,6 @@
         "});",
         ""
       ],
-      "description": "create a simple server"
+      "description": "Create a simple express server."
     }
   }
