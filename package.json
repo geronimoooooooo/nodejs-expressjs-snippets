@@ -1,8 +1,8 @@
 {
   "name": "NodeJs-ExpressJS-Snippets",
-  "displayName": "NodeJs-ExpressJS-Snippets",
+  "displayName": "NodeJs ExpressJS Snippets",
   "description": "Helps you code some nodejs and expressjs.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "NahThx",
   "license": "MIT",
   "repository": {
@@ -23,7 +23,7 @@
       },
       {
         "language": "javascript",
-        "path": "./snippets/javascript-routes.json"
+        "path": "./snippets/routes.json"
       }
     ]
   },
