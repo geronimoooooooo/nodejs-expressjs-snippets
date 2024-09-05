@@ -3,7 +3,12 @@
   "displayName": "NodeJs-ExpressJS-Snippets",
   "description": "Helps you code some nodejs and expressjs.",
   "version": "0.0.5",
-  "publisher": "Simo Lukic",
+  "publisher": "NahThx",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geronimoooooooo/nodejs-expressjs-snippets.git"
+  },
   "engines": {
     "vscode": "^1.92.0"
   },
