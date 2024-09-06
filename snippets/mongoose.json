@@ -17,7 +17,7 @@
     "description": "Insert all the typical required modules"
   }, 
   "mongoose con session def": {
-    "prefix": "a-mongoose-con-session-defs",
+    "prefix": "a-mongoose-con-session",
     "body": [
       "/*",
       "mongoose.connect('mongodb+srv://TT:TT@goldtrade.skpkklp.mongodb.net/', { useNewUrlParser: true });    ",
@@ -36,14 +36,16 @@
       "app.use(session({",
       "  secret: 'your secret key',",
       "  resave: false,",
-      "  saveUninitialized: true,",
-      "  store: new MongoStore({ mongoUrl: db.client.s.url })",
+      "  saveUninitialized: true, //sometimes false",
+      "  store: new MongoStore({ mongoUrl: db.client.s.url }) //or mongoUrl: mongoString",
       "}));",
       "",
       "app.use(passport.initialize());",
       "app.use(passport.session());",
       "",
-      "passport.use(new LocalStrategy(User.authenticate()));",
+      "// Configure Passport.js to use the User model",
+      "passport.use(User.createStrategy()); //new",
+      "//passport.use(new LocalStrategy(User.authenticate())); //old",
       "passport.serializeUser(User.serializeUser());",
       "passport.deserializeUser(User.deserializeUser());"
     ],
@@ -75,11 +77,11 @@
         "",
         "  //connect() has 2 further args",
         "  dbConnection.once(\"open\", (_) => {",
-        "    console.log(`Database connected: ${url}`);",
+        "    console.log(`Database connected: \\${url}`);",
         "  });",
         "  //connect() has 2 further args",
         "  dbConnection.on(\"error\", (err) => {",
-        "    console.error(`connection error: ${err}`);",
+        "    console.error(`connection error: \\${err}`);",
         "  });",
         "  return;",
         "}"
