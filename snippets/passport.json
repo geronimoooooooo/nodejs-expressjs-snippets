@@ -1,4 +1,31 @@
 {
+  "mongoose con session def": {
+    "prefix": "a-passport-con-session",
+    "body": [
+      "const MongoStore = require('connect-mongo');",
+      "const mongoose = require('mongoose');",
+      "const mongoString = 'mongodb+srv://TT:TT@goldtrade.skpkklp.mongodb.net/';",
+      "mongoose.connect(mongoString);",
+      "const db = mongoose.connection;",
+      "",
+      "app.use(session({",
+      "  secret: 'your secret key',",
+      "  resave: false,",
+      "  saveUninitialized: true, //sometimes false",
+      "  store: new MongoStore({ mongoUrl: db.client.s.url }) //or mongoUrl: mongoString",
+      "}));",
+      "",
+      "app.use(passport.initialize());",
+      "app.use(passport.session());",
+      "",
+      "// Configure Passport.js to use the User model",
+      "passport.use(User.createStrategy()); //new",
+      "//passport.use(new LocalStrategy(User.authenticate())); //old",
+      "passport.serializeUser(User.serializeUser());",
+      "passport.deserializeUser(User.deserializeUser());"
+    ],
+    "description": "mongoose connection session def"
+  },
   "passport google": {
     "prefix": "a-passport-google",
     "body": [
