@@ -10,4 +10,6 @@ Use "a-" to display snippets.
 - a-html (HTML stuff)
 - a-passport
 
+Use "vsce package" and "vsce publish"
+
 
