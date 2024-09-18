@@ -1,0 +1,9 @@
+{
+    "return 404 msg": {
+      "prefix": "a-misc-return-404-msg",
+      "body": [
+        "return res.status(404).send({'msg':'404'});"
+      ],
+      "description": "return 404 msg"
+    }
+  }

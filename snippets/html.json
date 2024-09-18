@@ -12,7 +12,7 @@
       "    <a href=\"/login\">Login</a>",
       "    <a href=\"/register\">Register</a>",
       "  <% } %>",
-      
+
       "<li><a href='/register'>register!</a></li>",
       "<li><a href='/login'>login!</a></li>",
       "<li><a href='/logout'>logout!</a></li>",
@@ -74,8 +74,7 @@
         ],
         "description": "register"
       
-    },
-    
+    },    
       "secret": {
         "prefix": "a-html-secret",
         "body": [
@@ -89,7 +88,16 @@
           "<li><a href='/secret'>secret!</a></li>"
         ],
         "description": "secret"
-      }
-    
-  
+      },      
+        "a-toID": {
+          "prefix": "a-html-a-toID",
+          "body": [
+            "<ul>",
+            "<% blogPosts.forEach(blog => { %>",
+            "    <li><a href='/blogs/pages-blog/<%= blog.id %>'><%= blog.title %></a></li>",
+            "<% }) %>",
+            "</ul>"
+          ],
+          "description": "a-toID"
+        }
 }

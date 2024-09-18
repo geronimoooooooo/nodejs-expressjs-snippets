@@ -2,7 +2,7 @@
   "name": "NodeJs-ExpressJS-Snippets",
   "displayName": "NodeJs ExpressJS Snippets",
   "description": "Helps you code nodejs and expressjs.",
-  "version": "0.1.33",
+  "version": "0.1.35",
   "publisher": "NahThx",
   "license": "MIT",
   "repository": {
@@ -40,6 +40,10 @@
       {
         "language": "javascript",
         "path": "./snippets/passport.json"
+      },      
+      {
+        "language": "javascript",
+        "path": "./snippets/misc.json"
       }
     ]
   },

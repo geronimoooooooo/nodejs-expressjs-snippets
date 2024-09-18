@@ -11,5 +11,6 @@ Use "a-" to display snippets.
 - a-passport
 
 Use "vsce package" and "vsce publish"
+https://marketplace.visualstudio.com/items?itemName=NahThx.NodeJs-ExpressJS-Snippets
 
 

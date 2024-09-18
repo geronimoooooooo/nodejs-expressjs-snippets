@@ -8,7 +8,7 @@
     ],
     "description": "Creates a get endpoint."
   },
-  "get id with params": {
+  "get params.id": {
     "prefix": "a-routes-get-params-id",
     "body": [
         "// Read a specific resource by ID http://localhost:3000/api/resources/:id",
@@ -18,6 +18,7 @@
         "",
         "  if (resource) {",
         "    res.json(resource);",
+        "    //res.render(`pages-blog/blog`, {post});",
         "  } else {",
         "    res.status(404).json({ error: 'Resource not found' });",
         "  }",
