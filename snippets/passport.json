@@ -26,6 +26,32 @@
     ],
     "description": "mongoose connection session def"
   },
+    "passport-session-isAuth": {
+      "prefix": "a-passport-session-isAuth",
+      "body": [
+        "//const session = require('express-session');",
+        "// Initialize the session middleware",
+        "app.use(session({",
+        "    secret: 'yourSecretKey', // Replace with your own secret",
+        "    resave: false,",
+        "    saveUninitialized: true,",
+        "    cookie: { secure: false }  // Set to true if using HTTPS",
+        "}));",
+        "",
+        "//set in controller.js loginPost function",
+        "req.session.isAuthenticated = true;",
+        "",
+        "//place in routes.js ",
+        "router.use((req, res, next)=>{",
+        "    res.locals.isAuthenticated = isAuthenticated;",
+        "    // Set isAuthenticated from session data",
+        "    // res.locals.isAuthenticated = req.session.isAuthenticated || false;",
+        "    next();",
+        "});",
+        "let isAuthenticated = false;"
+      ],
+      "description": "passport-session-isAuth"
+    },
   "passport google": {
     "prefix": "a-passport-google",
     "body": [

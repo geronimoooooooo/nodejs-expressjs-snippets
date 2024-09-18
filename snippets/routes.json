@@ -26,6 +26,33 @@
     ],
     "description": "get id with params"
 },
+  "get params and query": {
+    "prefix": "a-routes-get-params-query",
+    "body": [
+      "app.get('/user/:id/:dps/detail', (req , res)=>{  ",
+      "  //detail?race=&name= user/1/100/detail?race=orc&name=zugzug",
+      "  let {id} = req.params;  ",
+      "  let {race, name} = req.query;",
+      "})"
+    ],
+    "description": "get params and query"
+  },
+    "get from query": {
+      "prefix": "a-routes-get-query",
+      "body": [
+        "/* /game?name=oddball*/",
+        "app.get('/game', function (req, res) {",
+        "  //if no name given, req.q.name is undefined and falsy",
+        "  if(req.query.name){ ",
+        "    let name = req.query.name;  ",
+        "    console.log(req.query.name + ' is ' +typeof req.query.name);",
+        "    name = name.toLowerCase();",
+        "  }",
+        "  res.send(`this is a name: ${req.query.name} !`);  ",
+        "});"
+      ],
+      "description": "get from query"    
+  },
 "full crud functions on product": {
     "prefix": "a-routes-crud-product",
     "body": [
@@ -99,6 +126,22 @@
     ],
     "description": "Render an ejs file."
   },
+    "get htmlPage": {
+      "prefix": "a-routes-get-htmlPage",
+      "body": [
+        "import { fileURLToPath } from 'url';",
+        "import path from 'path';",
+        "",
+        "const __filename = fileURLToPath(import.meta.url);",
+        "const __dirname = path.dirname(__filename);",
+        "app.use(express.static('public')); //url/file.img abrufbar, wenn im public folder",
+        "",
+        "app.get('/returnhtmlpage' , (req , res)=>{",
+        "  res.sendFile(path.join(__dirname, 'views', 'returnhtmlpage.html'))",
+        "});"
+      ],
+      "description": "get htmlPage"
+    },
   "register user": {
     "prefix": "a-routes-register",
     "body": [
