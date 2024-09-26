@@ -2,9 +2,11 @@
   "mongoose-connect ": {
     "prefix": "a-mongoose-connect",
     "body": [
-        "",
         "//have own file and call connectDB()",
         "import mongoose from \"mongoose\";",
+        "const mongoose = require(\"mongoose\")",
+        "",
+        "const mongoString = process.env.DB_URL",
         "",
         "export default function connectDB() {",
         "//   const url = \"mongodb://127.0.0.1/blog_db\";",
@@ -21,16 +23,118 @@
         "  const dbConnection = mongoose.connection;",
         "",
         "  //connect() has 2 further args",
-        "  dbConnection.once(\"open\", (_) => {",
-        "    console.log(`Database connected: \\${url}`);",
-        "  });",
-        "  //connect() has 2 further args",
-        "  dbConnection.on(\"error\", (err) => {",
-        "    console.error(`connection error: \\${err}`);",
-        "  });",
+        "  dbConnection",
+        "    .once(\"open\", (_) => {console.log(`Database connected for first time: \\${url}`);  })",
+        "    .on(\"open\", ()=> console.log(`Database open on \\${url}`))",
+        "    .on(\"closed\", ()=> console.log(`Database CLOSED on \\${url}`))",
+        "    .on(\"error\", (err) => {console.error(`connection error: \\${err}`);  });",
         "  return;",
-        "}"
+        "}",
+        "",
+        "module.exports = connectDB();",
+        "async function connectToDatabase() {",
+        "  try {",
+        "    await mongoose.connect('mongodb://localhost/my-app', {",
+        "      useCreateIndex: true,",
+        "      useFindAndModify: false,",
+        "    });",
+        "    console.log('Successfully connected to database');",
+        "  } catch (error) {",
+        "    console.error(error);",
+        "  }",
+        "}",
+        "//in server.js",
+        "const models = require('./models');",
+        "models.connectToDatabase();"
     ],
     "description": "connect with mongoose. own file."
+},
+"mongoose create": {
+    "prefix": "a-mongoose-create",
+    "body": [
+        "const user1 = await User.create({ name: 'John', email: 'john@example.com' });"
+    ],
+    "description": "mongoose create"
+},
+"mongoose-find": {
+    "prefix": "a-mongoose-find",
+    "body": [        
+        "const users = await User.find();// Find all documents",        
+        "const admins = await User.find({ isAdmin: true });// Find documents that match a query",        
+        "const user = await User.findById(userId); // Find a single document by ID",
+        " const user = await User.findOne({ name: 'John' }).populate('tasks');",
+        "Book.find({tags: { \\$in: ['romance', 'soap'] }}) // 'romance' OR 'soap' books",
+        "Book.find({ reviews: { \\$elemMatch: { rating: 5, rating: 0 } }})//Finding controversial books (loved AND hated both)"
+    ],
+    "description": "mongoose find"
+}, 
+"mongoose-update": {
+    "prefix": "a-mongoose-update",
+    "body": [
+        "// Update a single document by ID",
+        "await User.findByIdAndUpdate(userId, { name: 'Jane Doe' });",
+        "// Update multiple documents that match a query",
+        "await User.updateMany({ isAdmin: true }, { isAdmin: false });"
+    ],
+    "description": "mongoose update"
+},
+"mongoose-delete": {
+    "prefix": "a-mongoose-delete",
+    "body": [
+        "// Delete a single document by ID",
+        "await User.findByIdAndDelete(userId);",
+        "// Delete multiple documents that match a query",
+        "await User.deleteMany({ isAdmin: false });"
+    ],
+    "description": "mongoose delete"
+},"mongoose-del-collection": {
+    "prefix": "a-mongoose-del-collection",
+    "body": [
+        "const deleteContentFromCollections = async () => {",
+        "  // List of collection names you want to drop",
+        "  const collectionsToDrop = ['post4', 'task4', 'user4'];",
+        "  try {",
+        "    for (const collectionName of collectionsToDrop) {",
+        "      if (mongoose.connection.collections[collectionName]) {",
+        "        await mongoose.connection.collections[collectionName].drop();",
+        "        console.log(`Dropped collection: \\${collectionName}`);",
+        "      } else {",
+        "        console.log(`Collection \\${collectionName} not found.`);",
+        "      }",
+        "    }",
+        "  } catch (err) {",
+        "    console.error('Error dropping collections:', err);",
+        "  }",
+        "};",
+        "",
+        "async function dropCollections(){  ",
+        "  User4.collection.drop((err, result) => {",
+        "    if (err) {",
+        "        console.error('Error dropping collection:', err);",
+        "    } else {",
+        "        console.log('Collection dropped:', result);",
+        "    }",
+        "  });",
+        "}"
+    ],
+    "description": "mongoose del collection"
+}, "mongoose-populate": {
+    "prefix": "a-mongoose-populate",
+    "body": [
+        "const user = await User.findById(userId).populate('posts');",
+        "const thing = await Thing.findById(req.params.id).populate('category', '-things').exec();  // Find category by ID",
+        "const result = await Category.find().populate({",
+        "    path: 'things',",
+        "    populate: {",
+        "        path: 'category',",
+        "        //select: 'name'  // Optionally, select specific fields from category",
+        "    //   select: '-things -id'",
+        "        populate: {",
+        "            path: 'things'",
+        "        }",
+        "    }",
+        "    }).populate('location').exec();  "
+    ],
+    "description": "mongoose populate"
 }
 }

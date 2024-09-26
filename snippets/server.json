@@ -80,9 +80,11 @@
         "const MongoStore = require('connect-mongo');",
         "const flash = require('connect-flash');",
         "const bodyParser = require('body-parser');",
-        "const indexRoutes = require('./routes/index');",
-        "const User = require('./models/User');",
+        "//const indexRoutes = require('./routes/index.routes');",
+        "//const User = require('./models/User');",
         "const app = express()",
+        "// npm i express fs path https mongoose passport passport-local passport-local-mongoose", 
+        "// npm i express-session connect-mongo connect-flash body-parser",
         "",
         "const PORT = process.env.PORT",
         "const mongoString = process.env.MONGO_URL",
@@ -115,6 +117,10 @@
         "app.use(bodyParser.urlencoded({ extended: true }));",
         "app.use(flash());",
         "app.use('/', indexRoutes);",
+        "",
+        "app.get('/', (req, res) => {",
+        "res.send('Hello, World! date: ' + new Date());",
+        "});",
         "",
         "//#region WEBSERVER",
         "//set NODE_OPTIONS=--openssl-legacy-provider in cmd in VS;read magic wiki",
@@ -377,5 +383,25 @@
         "export default Question"
     ],
     "description": "a bunch of classes"
-}
+},
+  "server error at end": {
+    "prefix": "a-server-error",
+    "body": [
+      "app.use((req, res, next) => {",
+      "  const error = new Error('Not found');",
+      "  error.status = 404;",
+      "  next(error);",
+      "});",
+      "",
+      "app.use((error, req, res, next) => {",
+      "  res.status(error.status || 500);",
+      "  res.json({",
+      "    error: {",
+      "      message: error.message",
+      "    }",
+      "  });",
+      "});"
+    ],
+    "description": "server error at end"
+  }
 }

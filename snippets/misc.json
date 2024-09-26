@@ -1,9 +1,19 @@
 {
-    "return 404 msg": {
-      "prefix": "a-misc-return-404-msg",
-      "body": [
-        "return res.status(404).send({'msg':'404'});"
-      ],
-      "description": "return 404 msg"
-    }
+  "return 404 msg": {
+    "prefix": "a-misc-return-404-msg",
+    "body": [
+      "return res.status(404).send({'msg':'404'});",
+      "return res.status(404).json({ message: 'Category not found' }); // Return 404 if not found",
+      "res.status(500).json({error: 'Server Error'});",
+      "res.status(404).sendFile(path.join(__dirname, 'views', 'form.html'));"
+    ],
+    "description": "return 404 msg"
+  },
+  "wait pause n sec": {
+    "prefix": "a-misc-wait-n-seconds",
+    "body": [
+      "await new Promise((resolve, reject) => setTimeout(resolve, 3000));"
+    ],
+    "description": "wait pause n sec"
   }
+}
