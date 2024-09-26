@@ -64,7 +64,20 @@
         "const user = await User.findById(userId); // Find a single document by ID",
         " const user = await User.findOne({ name: 'John' }).populate('tasks');",
         "Book.find({tags: { \\$in: ['romance', 'soap'] }}) // 'romance' OR 'soap' books",
-        "Book.find({ reviews: { \\$elemMatch: { rating: 5, rating: 0 } }})//Finding controversial books (loved AND hated both)"
+        "Book.find({ reviews: { \\$elemMatch: { rating: 5, rating: 0 } }})//Finding controversial books (loved AND hated both)",
+        "const user = await User.findById(userId).populate('posts');",
+        "const thing = await Thing.findById(req.params.id).populate('category', '-things').exec();  // Find category by ID",
+        "const result = await Category.find().populate({",
+        "    path: 'things',",
+        "    populate: {",
+        "        path: 'category',",
+        "        //select: 'name'  // Optionally, select specific fields from category",
+        "    //   select: '-things -id'",
+        "        populate: {",
+        "            path: 'things'",
+        "        }",
+        "    }",
+        "    }).populate('location').exec();  "
     ],
     "description": "mongoose find"
 }, 
@@ -118,23 +131,5 @@
         "}"
     ],
     "description": "mongoose del collection"
-}, "mongoose-populate": {
-    "prefix": "a-mongoose-populate",
-    "body": [
-        "const user = await User.findById(userId).populate('posts');",
-        "const thing = await Thing.findById(req.params.id).populate('category', '-things').exec();  // Find category by ID",
-        "const result = await Category.find().populate({",
-        "    path: 'things',",
-        "    populate: {",
-        "        path: 'category',",
-        "        //select: 'name'  // Optionally, select specific fields from category",
-        "    //   select: '-things -id'",
-        "        populate: {",
-        "            path: 'things'",
-        "        }",
-        "    }",
-        "    }).populate('location').exec();  "
-    ],
-    "description": "mongoose populate"
 }
 }
